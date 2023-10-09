@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        JavaScript是单线程执行的，
+        在JavaScript运行期间，
+        有可能会阻塞UI渲染，
+        这在一方面说明JavaScript引擎线程和UI渲染线程是互斥的。
+        JavaScript被设计成单线程的原因在于，
+        JavaScript可以修改DOM，
+        如果在JavaScript工作期间，
+        UI还在渲染的话，
+        则可能不会正确渲染DOM。
+        单线程也有一些好处，如下：
+
+        节省内存空间
+        节省上下文切换时间
+        没有锁的问题存在
+
+        进程： CPU在运行指令及加载和保存上下文所需的时间，
+        放在应用上一个程序就是一个进程，一个浏览器tab选项卡就是一个进程
+
+        线程: 是进程中更小的单位，描述了执行一段指令所需的时间。
+
+        执行栈: 可以把执行栈看成是一个存储函数调用的栈结构，遵循先进后出的原则，一个执行栈可能表现如下：
+
+        EventLoop:
+        上面讲到函数会在执行栈中执行，
+        那么当遇到异步代码后，
+        该如何处理呢？
+        其实当遇到异步代码的时候，
+        会被挂起在Task队列中，
+        一旦执行栈为空，
+        就会从Task中拿出需要执行的代码执行，
+        所以本质上讲JS中的异步还是同步行为。
+    </div>
+    <script>
+        setTimeout(() => {
+            console.log(1);
+            Promise.resolve().then(() => {
+                console.log(2);
+                setTimeout(() => {
+                    Promise.resolve().then(() => {
+                        console.log(7);
+                    })
+                    console.log(6);
+
+                }, 0)
+                Promise.resolve().then(() => {
+                    console.log(8);
+                })
+            })
+        }, 0)
+        setTimeout(() => {
+            console.log(3);
+        }, 10)
+        Promise.resolve().then(() => {
+            console.log(4);
+        })
+        console.log(5);
+// 输出结果：5 4 1 2 3
+    </script>
+</body>
+
+</html>

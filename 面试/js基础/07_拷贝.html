@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // var obj = {
+        //     name: '张三',
+        //     age: 23,
+        //     isStudent: false,
+        //     job: {
+        //         name: 'FE',
+        //         money: 12
+        //     }
+        // }
+        // // var newObj = Object.assign({}, obj);
+        // var newObj = { ...obj };
+        // newObj.name = 'lishi';
+        // obj.job.money = 21;
+        // console.log(obj.name); // 输出张三
+        // console.log(newObj.name); // 输出lishi
+        // console.log(newObj.age); // 输出23
+        // console.log(newObj.job.money);// 输出21，受影响
+
+        // var obj = {
+        //     name: '张三',
+        //     age: 23,
+        //     address: undefined,
+        //     sayHello: function () {
+        //         console.log('Hello');
+        //     },
+        //     isStudent: false,
+        //     job: {
+        //         name: 'FE',
+        //         money: 12
+        //     }
+        // }
+        // var newObj = JSON.parse(JSON.stringify(obj));
+        // obj.job.money = 21;
+        // console.log(newObj.name);      // 输出张三
+        // console.log(newObj.age);       // 输出23
+        // console.log(newObj.job.money); // 输出12
+
+        // console.log(newObj.address);   // 报错
+        // console.log(newObj.sayHello());// 报错
+
+        // 第二种： 实现自己简易的深拷贝函数
+        function deepClone(obj) {
+            function isObject(o) {
+                return typeof o === 'object' && o !== null;
+            }
+            if (!isObject(obj)) {
+                throw new Error('非对象');
+            }
+            var isArray = Array.isArray(obj);
+            var newObj = isArray ? [...obj] : { ...obj };
+            Reflect.ownKeys(newObj).forEach(key => {
+                newObj[key] = isObject(newObj[key]) ? deepClone(newObj[key]) : newObj[key];
+            })
+            return newObj;
+        }
+        var obj = {
+            name: 'AAA',
+            age: 23,
+            job: {
+                name: 'FE',
+                money: 12000
+            }
+        }
+        var cloneObj = deepClone(obj);
+        obj.job.money = 13000;
+        console.log(obj.job.money);     // 输出13000
+        console.log(cloneObj.job.money);// 输出12000
+        console.log(cloneObj);// 输出12000
+        console.log(Reflect);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function Animal() {
+        //     this.colors = ['red', 'blue'];
+        // }
+        // function Dog(name) {
+        //     this.name = name;
+        // }
+        // Dog.prototype = new Animal();
+
+        // var dog1 = new Dog('旺财');
+        // var dog2 = new Dog('钢镚');
+        // dog2.colors.push('yellow');
+        // console.log(dog1.colors); // ["red", "blue", "yellow"]
+        // console.log(dog2.colors); // ["red", "blue", "yellow"]
+
+        // console.log(dog1 instanceof Dog);   // true
+        // console.log(dog1 instanceof Animal);// true
+
+        // function Animal(name) {
+        //     this.name = name;
+        //     this.colors = ['red', 'blue'];
+        // }
+
+        // Animal.prototype.eat = function () {
+        //     console.log(this.name + ' is eating!');
+        // }
+
+        // function Dog(name) {
+        //     Animal.call(this, name);
+        // }
+
+        // var dog1 = new Dog('旺财');
+        // var dog2 = new Dog('钢镚');
+        // dog2.colors.push('yellow');
+
+        // console.log(dog1.colors); // ["red", "blue"]
+        // console.log(dog2.colors); // ["red", "blue", "yellow"]
+
+        // console.log(dog1 instanceof Dog);   // true
+        // console.log(dog2 instanceof Animal);// false
+
+        // console.log(dog1.eat()); // 报错
+
+
+        // function Animal(name) {
+        //     this.name = name;
+        //     this.colors = ['red', 'blue'];
+        // }
+        // Animal.prototype.eat = function () {
+        //     console.log(this.name + ' is eatting');
+        // }
+        // function Dog(name) {
+        //     Animal.call(this, name);
+        // }
+        // Dog.prototype = new Animal(); // 第一次调用
+        // var dog1 = new Dog('dog1');   // 第二次调用
+        // var dog2 = new Dog('dog2');   // 第三次调用
+        // dog1.colors.push('yellow');
+        // console.log(dog1.name);  // 输出dog1
+        // console.log(dog2.colors);// 输出['red','blue']
+        // console.log(dog2.eat()); // 输出dog2 is eatting
+
+        // 寄生组合继承
+        function Animal(name) {
+            this.name = name;
+            this.colors = ['red', 'blue'];
+        }
+        Animal.prototype.eat = function () {
+            console.log(this.name + ' is eatting');
+        }
+        function Dog(name) {
+            Animal.call(this, name);
+        }
+        Dog.prototype = Object.create(Animal.prototype);
+        Dog.prototype.constructor = Dog;
+        var dog1 = new Dog('dog1');
+        var dog2 = new Dog('dog2');
+        dog1.colors.push('yellow');
+        console.log(dog1.name);  // 输出dog1
+        console.log(dog2.colors);// 输出['red','blue']
+        console.log(dog2.eat()); // 输出dog2 is eatting
+    </script>
+</body>
+
+</html>

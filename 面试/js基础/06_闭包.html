@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="container"> 按钮 </button>
+    <script>
+        // var a = 1;
+        // function foo() {
+        //     console.log(a);
+        //     var a = 2;
+        //     console.log(a);
+        //     // 这就是闭包
+        //     return function () {
+        //         console.log(a);
+        //     }
+        // }
+        // console.log(a);
+        // var bar = foo();
+        // // 输出2，而不是1
+        // bar();
+        // console.log(a);
+
+        // var a = 1;
+        // function foo() {
+        //     var a = 2;
+        //     function baz() {
+        //         console.log(a);
+        //     }
+        //     bar(baz);
+        // }
+        // function bar(fn) {
+        //     // 这就是闭包
+        //     fn();
+        // }
+        // // 输出2，而不是1
+        // foo();
+
+        // var a = 1;
+        // // 定时器
+        // setTimeout(function timeHandler() {
+        //     var a = 2;
+        //     console.log(a);
+        // }, 3000);
+        // console.log(a);
+
+        // // 事件监听
+        // // $('#container').click(function () {
+        // //     console.log('DOM Listener');
+        // // })
+        // // console.log(document.getElementById('container').addEventListener);
+        // document.getElementById('container').addEventListener('click', function () {
+        //     a = 3;
+        //     console.log(a);
+        // })
+        // console.log(a);
+
+        // var a = 1;
+        // (function IIFE() {
+        //     var a = 2;
+        //     // 输出2
+        //     console.log(a);
+        // })();
+        // console.log(a);
+
+
+        // for (var i = 1; i <= 5; i++) {
+        //     setTimeout(function timer() {
+        //         console.log(i); // 输出6
+        //     }, i * 1000)
+        // }
+        // for (let i = 1; i <= 5; i++) {
+        //     setTimeout(function timer() {
+        //         console.log(i); // 输出6
+        //     }, i * 1000)
+        // }
+
+        // for (var i = 1; i <= 5; i++) {
+        //     (function (j) {
+        //         setTimeout(function timer() {
+        //             console.log(j)
+        //         }, i * 1000)
+        //     })(i)
+        // }
+
+        for (var i = 1; i <= 5; i++) {
+            setTimeout(function timer(j) {
+                console.log(i);
+                console.log(j);
+            }, i * 1000, i)
+        }
+    </script>
+</body>
+
+</html>

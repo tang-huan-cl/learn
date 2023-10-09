@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function foo() {
+        //     var flag = true;
+        //     if (flag) {
+        //         var a = 'abc';
+        //         let b = 'ABC';
+        //         console.log(a); // 输出abc
+        //         console.log(b); // 输出ABC
+        //     }
+        //     console.log(a); // 输出abc
+        //     console.log(b); // 报错
+        // }
+        // foo();
+        // console.log(flag); // 输出abc
+
+        // let onWatch = function (obj, setBind, getLogger) {
+        //     return new Proxy(obj, {
+        //         get(target, property, receiver) {
+        //             getLogger(target, property);
+        //             return Reflect.get(target, property, receiver);
+        //         },
+        //         set(target, property, value, receiver) {
+        //             setBind(value, property);
+        //             return Reflect.set(target, property, value);
+        //         }
+        //     })
+        // }
+
+        // let obj = { a: 1 }
+        // let p = onWatch(obj, (value, property) => {
+        //     console.log(`监听到${property}属性的改变，其值为${value}`)
+        // }, (target, property) => {
+        //     console.log(`监听到获取属性${property},其值为${target[property]}`)
+        // })
+
+        // p.a = 2;        // 监听到a属性的改变，其值为2
+        // console.log(p.a); // 监听到获取属性a,其值为2
+
+        // var p1 = Promise.resolve(1);
+        // var p2 = new Promise((resolve) => {
+        //     setTimeout(() => {
+        //         resolve(2);
+        //     }, 100);
+        // })
+        // var p3 = 3;
+        // Promise.all([p1, p2, p3]).then((res) => {
+        //     console.log(res); // 输出[1,2,3]
+        // })
+
+        // var p1 = Promise.resolve(1);
+        // var p2 = new Promise((resolve) => {
+        //     setTimeout(() => {
+        //         resolve(2);
+        //     }, 100);
+        // })
+        // var p3 = 3;
+        // Promise.race([p2, p1, p3]).then((res) => {
+        //     console.log(res); // 输出1
+        // })
+
+        var progress = 0;
+        var timer = null;
+        function render() {
+            progress += 1;
+            if (progress <= 100) {
+                console.log(progress);
+                timer = window.requestAnimationFrame(render);
+            } else {
+                cancelAnimationFrame(timer);
+            }
+        }
+        //第一帧渲染
+        window.requestAnimationFrame(render);
+
+    </script>
+</body>
+
+</html>
