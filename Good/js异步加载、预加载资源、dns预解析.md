@@ -118,7 +118,7 @@ async、defer 是  script 标签的专属属性，对于网页中的其他资源
 ## subresource 和 prerender
 
 ### subresource
-可以用来指定资源是当前页面资源的最高优先级，如果资源买上就会用到，推荐使用 subresource。
+可以用来指定资源是当前页面资源的最高优先级，如果资源马上就会用到，推荐使用 subresource。
 
 使用方式：
 
