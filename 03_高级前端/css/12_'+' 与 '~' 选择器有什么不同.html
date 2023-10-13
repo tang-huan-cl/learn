@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* + 选择器匹配紧邻的之后的连续兄弟元素，这样描述更准确 */
+        div+p {
+            color: red;
+        }
+
+        /* 第一个p标签变红色了 */
+
+        /* div~p {
+            color: blue;
+        } */
+
+        /* div后面的p标签都变成红色了 */
+    </style>
+</head>
+
+<body>
+    <!-- +' 与 '~' 选择器有什么不同 -->
+
+    <!-- + 是匹配相邻元素之后的选择器,选择器匹配紧邻的兄弟元素 -->
+    <!-- ~ 是匹配元素之后的选择器, 选择器匹配随后的所有兄弟元素 -->
+
+
+    <div>我是div</div>
+    <p>我是p</p>
+    <p>我是p</p>
+    <div>我是div</div>
+    <p>我是p</p>
+    <div>
+        <p>我是div下面的p</p>
+        <p>我是div下面的p</p>
+    </div>
+    <span>我是span</span>
+</body>
+
+</html>
