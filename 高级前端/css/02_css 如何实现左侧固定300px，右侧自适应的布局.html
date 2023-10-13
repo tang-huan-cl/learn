@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /* .container {
+            display: flex;
+        }
+
+        .left {
+            flex-basis: 300px;
+            flex-shrink: 0;
+            background-color: #239b3b;
+        }
+
+        .main {
+            flex-grow: 1;
+            background-color: #31b3e3;
+        } */
+
+        .box {
+            height: 400px;
+            background-color: skyblue;
+        }
+
+        .box1 {
+            float: left;
+            width: 300px;
+            height: 200px;
+            background-color: red;
+        }
+
+        .box2 {
+            /* width: 400px; */
+            height: 200px;
+            background-color: blue;
+            overflow: hidden;
+            /* padding-left: 300px; */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 如果使用 flex 布局回答 flex: 1 时，则追问它是那几个属性的简写，最主要配置的是哪一个属性 -->
+
+    <!-- 左侧300px；右侧flex: 1; 采用flex的固比模型 -->
+
+    <!-- 使用calc方法 .left{width:330px;} .right{width: calc(100% - 330px)} -->
+
+    <!-- 圣杯布局吧， float也可以，不过很少用了
+        .container{padding-left: 300px;} .left,.main { float: left;position: relative;}
+        .left{width: 300px;right: 300px;margin-left: -100%}
+        .main{width: 100%;} -->
+    <!-- <div class="container">
+        <div class="left">
+            left
+        </div>
+        <div class="main">
+            main
+        </div>
+    </div> -->
+
+    <div class="box">
+        <div class="box1">box1</div>
+        <div class="box2">box2</div>
+    </div>
+
+</body>
+
+</html>

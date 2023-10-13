@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 1、css变量减少样式重复定义，
+            比如同一个颜色值要在多个地方重复使用，
+            以前通过less和sass预处理做到，
+            现在css变量也可以做到，
+            方便维护，
+            提高可读性  */
+        body {
+            --bgcolor: blue;
+            --color: red;
+            --base-size: 10;
+        }
+
+        p {
+            color: var(--color);
+        }
+
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: var(--bgcolor);
+            color: var(--color);
+        }
+
+
+        /* 2、在媒体查询中使用，精简代码，减少冗余 */
+        #box {
+            color: var(--color);
+            width: calc(var(--base-size)* 10px);
+            height: clac(var(--base-size)* 5px);
+            padding: calc(var(--base-size) * 1px);
+        }
+
+        @media screen and (min-width: 1000px) {
+            #box {
+                --base-size: 8;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <p>
+        1、css变量减少样式重复定义，
+        比如同一个颜色值要在多个地方重复使用，
+        以前通过less和sass预处理做到，
+        现在css变量也可以做到，
+        方便维护，
+        提高可读性
+    </p>
+    <div>123456</div>
+    <div id="box">2、在媒体查询中使用，精简代码，减少冗余</div>
+
+    <script>
+        setTimeout(() => {
+
+            const _box = document.getElementById("box");
+            // 3、方便在js中使用
+            // 设置变量
+            // _box.style.setProperty('--color', 'pink');
+
+            // 读取变量 
+            const a = _box.style.getPropertyValue('--color').trim();
+            const b = _box.style.getPropertyValue('--base-size');
+            const c = document.getElementsByTagName('body')[0].style.getPropertyValue('--base-size');
+            console.log('---------------->1', a);
+            console.log('---------------->2', b);
+            console.log('---------------->3', c);
+            //pink
+
+            // 删除变量
+            _box.style.removeProperty('--color');
+        }, 0);
+    </script>
+
+</body>
+
+</html>
