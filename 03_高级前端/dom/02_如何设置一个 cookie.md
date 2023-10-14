@@ -1,0 +1,19 @@
+
+
+## 如何设置一个 cookie
+
+HTTP Cookie（也叫Web Cookie或浏览器Cookie）是服务器发送到用户浏览器并保存在本地的一小块数据，它会在浏览器下次向同一服务器再发起请求时被携带并发送到服务器上。通常，它用于告知服务端两个请求是否来自同一浏览器，如保持用户的登录状态。Cookie使基于无状态的HTTP协议记录稳定的状态信息成为了可能。
+
+服务端是通过setCookie的响应头来设置cookie的，要设置多个cookie时，得多写几个setCookie。服务器如果希望在浏览器保存 Cookie，就要在 HTTP 回应的头信息里面，放置一个Set-Cookie字段。
+
+前端使用document.cookie属性来读写当前网页的 Cookie。写入的时候，Cookie 的值必须写成key=value的形式。
+
+Cookie曾一度用于客户端数据的存储，因当时并没有其它合适的存储办法而作为唯一的存储手段，但现在随着现代浏览器开始支持各种各样的存储方式，Cookie渐渐被淘汰。由于服务器指定Cookie后，浏览器的每次请求都会携带Cookie数据，会带来额外的性能开销（尤其是在移动环境下）。新的浏览器API已经允许开发者直接将数据存储到本地，如使用 Web storage API （本地存储和会话存储）或 IndexedDB 。 参考资料： MDN 把cookie聊清楚 阮一峰JavaScript教程
+
+```javascript
+// 旧方式
+document.cookie = "a=3";
+ 
+// 也可以使用新的 API
+cookieStore.set("a", 3);
+```
