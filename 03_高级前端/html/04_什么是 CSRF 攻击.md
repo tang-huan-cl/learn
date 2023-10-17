@@ -1,0 +1,17 @@
+
+
+
+跨站请求伪造（英语：Cross-site request forgery），也被称为 one-click attack 或者 session riding，通常缩写为 CSRF 或者 XSRF， 是一种挟制用户在当前已登录的Web应用程序上执行非本意的操作的攻击方法。
+跟跨网站脚本（XSS）相比，XSS 利用的是用户对指定网站的信任，
+CSRF 利用的是网站对用户网页浏览器的信任。
+
+
+
+CSRF (Cross-site request forgery)，跨站请求伪造，又称为 one-click attack，顾名思义，通过恶意引导用户一次点击劫持 cookie 进行攻击。
+
+
+1、使用 JSON API。当进行 CSRF 攻击时，请求体通过 <form> 构建，请求头为 application/www-form-urlencoded。它难以发送 JSON 数据被服务器所理解。
+
+2、CSRF Token。生成一个随机的 token，切勿放在 cookie 中，每次请求手动携带该 token 进行校验。
+
+3、SameSite Cookie。设置为 Lax 或者 Strict，禁止发送第三方 Cookie。
