@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <script>
+        /**
+         * async的执行原理
+         * 其实就是自动执行generator函数
+         * 暂时不考虑genertor的编译步骤（更复杂）
+         */
+        const getData = () =>
+            new Promise((resolve) => setTimeout(() => resolve("data"), 1000));
+
+        // 这样的一个async函数 应该再1秒后打印data
+        // async function test() {
+        //     const data = await getData();
+        //     console.log("data: ", data);
+        //     const data2 = await getData();
+        //     console.log("data2: ", data2);
+        //     return "success";
+        // }
+
+        // test();
+
+        // async函数会被编译成generator函数 
+        // (babel会编译成更本质的形态，这里我们直接用generator)
+        function* testG() {
+            // await被编译成了yield
+            const data = yield getData();
+            console.log("data: ", data.value);
+            const data2 = yield getData();
+            console.log("data2: ", data2);
+            return "success";
+        }
+
+        const a = testG();
+        console.log('-------------1', a);
+        const b = a.next();
+        console.log('-------------2', b);
+        const c = a.next(b);
+        console.log('-------------3', c);
+        const d = a.next(c.value);
+        console.log('-------------4', d);
+    </script> -->
+
+
+    <!-- <script>
+        const all = async () => {
+            console.time('myTimer');
+            let req1 = () => {
+                // try {
+                //     return fetch(
+                //         `https://github.com/shfshanyue/Daily-Question/issues?page=1&q=is%3Aissue+is%3Aopen`,
+                //     );
+                // } catch (error) {
+                // }
+
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        console.log('1111');
+                        resolve(1111);
+                    }, 1000);
+                })
+            }
+
+
+            let req2 = async () => {
+                // try {
+                //     return fetch(
+                //         `https://github.com/shfshanyue/Daily-Question/issues?page=2&q=is%3Aissue+is%3Aopen`,
+                //     );
+                // } catch (error) {
+                // }
+
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        console.log('222222');
+                        resolve(222222);
+                    }, 2000);
+                })
+
+            }
+
+
+            let req3 = async () => {
+                // try {
+                //     return fetch(
+                //         `https://github.com/shfshanyue/Daily-Question/issues?page=3&q=is%3Aissue+is%3Aopen`,
+                //     );
+                // } catch (error) {
+                // }
+
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        console.log('33333');
+                        resolve(33333);
+                    }, 3000);
+                })
+            }
+
+
+            // // promise.all
+            // const res = await Promise.all([req1(), req2(), req3()]);
+            // console.log('-----------111: ', res);
+
+            const res1 = req1();
+            const res2 = req2();
+            const res3 = req3();
+
+            console.log('-----------1: ', res1);
+            console.log('-----------2: ', res2);
+            console.log('-----------3: ', res3);
+
+            // await
+            const u1 = await res1;
+            const u2 = await res2;
+            const u3 = await res3;
+
+            console.log('-----------1: ', u1);
+            console.log('-----------2: ', u2);
+            console.log('-----------3: ', u3);
+            console.timeEnd('myTimer');
+
+        }
+
+        all();
+    </script> -->
+</body>
+
+</html>
